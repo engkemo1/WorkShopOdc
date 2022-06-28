@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 class DioHelper {
   static Dio? dio;
@@ -23,9 +22,28 @@ class DioHelper {
     return recieveData;
   }
 
-  static Future<Response> GetData(
-      {required String url, Map<String, dynamic>? data, String? token}) async {
-    dynamic recieveData = await dio?.get(url, queryParameters: data);
-    return recieveData;
+
+
+  static Future<Response> getData({
+    required String url,
+    Map<String, dynamic>? queryParameters,
+    ProgressCallback? onReceiveProgress,
+    String? token,
+  }) async {
+
+    try {
+      dio!.options.headers = {
+        'Authorization': 'Bearer ${token ?? ''}',
+      };
+      final Response response = await dio!.get(
+        url,
+        queryParameters: queryParameters,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
   }
+
 }

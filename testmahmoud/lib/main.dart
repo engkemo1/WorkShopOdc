@@ -1,28 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testmahmoud/ViewModel/faq_cuibt/faq_cuibt.dart';
+import 'package:testmahmoud/database/local/cache_helper.dart';
+import 'package:testmahmoud/view/pages/MainScreen.dart';
+import 'package:testmahmoud/view/pages/dioHelper.dart';
 
-import 'package:testmahmoud/Views/Pages/Login.dart';
-import 'package:testmahmoud/Views/Pages/PageNews.dart';
-import 'package:testmahmoud/database/remote/dioHelper.dart';
-
-import 'Views/Pages/Sign up.dart';
-
-import 'dart:ui';
-
+import 'view/pages/Login.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DioHelper.inti();
-  runApp(const MyApp());
+  await CacheHelper.init();
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  var token=CacheHelper.get(key: "token");
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Login(),
+    return MultiBlocProvider(providers: [
+
+      BlocProvider(create: (context) => FAQ_Cuibt()),
+
+
+    ], child:
+    MaterialApp(
+      home: (token is String && token.length >0 )?MainScreen():Login(),
       debugShowCheckedModeBanner: false,
-    );
+    ) );
+
   }
 }

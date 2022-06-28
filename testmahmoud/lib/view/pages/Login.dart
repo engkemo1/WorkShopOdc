@@ -7,13 +7,17 @@ import 'package:testmahmoud/Views/Component/Dialog.dart';
 import 'package:testmahmoud/Views/Component/EditTextForm.dart';
 import 'package:testmahmoud/Views/Component/Editbutton.dart';
 import 'package:testmahmoud/Views/Component/edittext.dart';
+import 'package:testmahmoud/database/local/cache_helper.dart';
 import 'dart:ui';
 import '../../Models/Modelsign.dart';
+import '../../Views/Component/validation.dart';
+import 'MainScreen.dart';
 import 'Sign up.dart';
 
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
   GlobalKey<FormState> globalKey = new GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -28,8 +32,9 @@ class Login extends StatelessWidget {
 
           CheckResponse(response) {
             if (response == true) {
+              CacheHelper.put(key: "token", value: cubit.model?.token);
               Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => Login()));
+                  MaterialPageRoute(builder: (context) => MainScreen()));
             } else {
               dialog(context, response);
             }
@@ -97,6 +102,13 @@ class Login extends StatelessWidget {
                                 Padding(
                                     padding: EdgeInsets.all(10),
                                     child: EditTextForm(
+                                        Check: (val) {
+                                          if (val == null || val.length == 0)
+                                            return "Please enter your email!";
+                                          if (!RegExp(validationEmail)
+                                              .hasMatch(val))
+                                            return "email must be valid";
+                                        },
                                         value: 0,
                                         text: "Email",
                                         ColorOfLabel: Colors.grey[400],
@@ -105,6 +117,10 @@ class Login extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.all(10),
                                   child: EditTextForm(
+                                    Check: (val){
+                                      if (val == null || val.length == 0)
+                                        return "Please enter your password!";
+                                    },
                                     value: 1,
                                     text: "Password",
                                     ColorOfLabel: Colors.grey[400],
@@ -118,7 +134,9 @@ class Login extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+
+                                },
                                 child: EditText(
                                   text: "Forget Password?",
                                   color: Colors.orange,
@@ -137,6 +155,7 @@ class Login extends StatelessWidget {
                             if (formdata != null && formdata.validate()) {
                               formdata.save();
                               var response = await cubit.Login(data: {
+
                                 "email": sign?[0],
                                 "password": sign?[1]
                               });

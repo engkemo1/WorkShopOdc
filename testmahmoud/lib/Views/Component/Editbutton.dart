@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:testmahmoud/Views/Component/edittext.dart';
-import 'package:testmahmoud/Views/Pages/Sign%20up.dart';
 
 class EditButton extends StatelessWidget {
     EditButton(
@@ -11,7 +10,7 @@ class EditButton extends StatelessWidget {
       this.text,
       this.fontsize,
       this.fontwight,
-      this.color,this.icon,
+      this.color,this.icon,this.raduis,
       this.colorOfBorder,this.onPressed})
       : super(key: key);
   final onPressed;
@@ -23,6 +22,7 @@ class EditButton extends StatelessWidget {
   final fontwight;
   final colorOfBorder;
   final colorOfButton;
+  final raduis;
  Widget?  icon;
 
   @override
@@ -35,7 +35,7 @@ class EditButton extends StatelessWidget {
               side: BorderSide(color: colorOfBorder, width: 1),
               primary: colorOfButton,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8))),
+                  borderRadius: BorderRadius.circular((raduis!=null)?raduis:8))),
           onPressed:onPressed,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

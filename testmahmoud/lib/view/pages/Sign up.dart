@@ -9,8 +9,10 @@ import 'package:testmahmoud/Views/Component/EditTextForm.dart';
 import 'package:testmahmoud/Views/Component/Editbutton.dart';
 import 'package:testmahmoud/Views/Component/edittext.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:testmahmoud/Views/Component/validation.dart';
 import 'dart:ui';
 import 'Login.dart';
+import 'MainScreen.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({Key? key}) : super(key: key);
@@ -112,6 +114,13 @@ class SignUp extends StatelessWidget {
                                     Padding(
                                       padding: EdgeInsets.all(10),
                                       child: EditTextForm(
+                                          Check: (val) {
+                                            if (val == null || val.length == 0)
+                                              return "Please enter name!";
+                                            if (!RegExp(validationName)
+                                                .hasMatch(val))
+                                              return "Name must be valid";
+                                          },
                                           value: 0,
                                           text: "Name",
                                           ColorOfLabel: Colors.grey[400],
@@ -121,6 +130,13 @@ class SignUp extends StatelessWidget {
                                     Padding(
                                       padding: EdgeInsets.all(10),
                                       child: EditTextForm(
+                                          Check: (val) {
+                                            if (val == null || val.length == 0)
+                                              return "Please enter your email!";
+                                            if (!RegExp(validationEmail)
+                                                .hasMatch(val))
+                                              return "email must be valid";
+                                          },
                                           value: 1,
                                           text: "Email",
                                           ColorOfLabel: Colors.grey[400],
@@ -130,6 +146,10 @@ class SignUp extends StatelessWidget {
                                     Padding(
                                       padding: EdgeInsets.all(10),
                                       child: EditTextForm(
+                                        Check: (val){
+                                          if (val == null || val.length == 0)
+                                            return "Please enter your Password!";
+                                        },
                                         value: 2,
                                         text: "Password",
                                         ColorOfLabel: Colors.grey[400],
@@ -140,6 +160,14 @@ class SignUp extends StatelessWidget {
                                     Padding(
                                       padding: EdgeInsets.all(10),
                                       child: EditTextForm(
+                                        Check: (val) {
+                                          if (val == null || val.length == 0)
+                                            return "Please enter your phone number!";
+                                          if (!RegExp(validationPhone)
+                                              .hasMatch(val))
+                                            return "Phone number must be valid";
+                                        },
+                                        typeKeyboard: TextInputType.number,
                                         value: 3,
                                         text: "Phone Number",
                                         ColorOfLabel: Colors.grey[400],
@@ -162,6 +190,10 @@ class SignUp extends StatelessWidget {
                                   ),
                                 ),
                                 DropdownButton(
+                                  underline: Container(
+                                    height: 2,
+                                    color: Colors.orange,
+                                  ),
                                   onChanged: (val) {
                                     cubit.ChangeGender(val);
                                   },
@@ -180,12 +212,19 @@ class SignUp extends StatelessWidget {
                                     text: "Grade",
                                   ),
                                 ),
-                                DropdownButton(
-                                  onChanged: (val) {
-                                    cubit.ChangeGrade(val);
-                                  },
-                                  value: cubit.grade,
-                                  items: gradeItems,
+                                Container(
+                                  child: DropdownButton(
+                                    elevation: 18,
+                                    underline: Container(
+                                      height: 2,
+                                      color: Colors.orange,
+                                    ),
+                                    onChanged: (val) {
+                                      cubit.ChangeGrade(val);
+                                    },
+                                    value: cubit.grade,
+                                    items: gradeItems,
+                                  ),
                                 ),
                               ],
                             ),
@@ -203,6 +242,10 @@ class SignUp extends StatelessWidget {
                                 (state is UniversityLoading)
                                     ? Container()
                                     : DropdownButton(
+                                        underline: Container(
+                                          height: 2,
+                                          color: Colors.orange,
+                                        ),
                                         onChanged: (val) {
                                           cubit.ChangeUniversity(val);
                                         },
@@ -234,7 +277,7 @@ class SignUp extends StatelessWidget {
                                     if (response == true)
                                       Navigator.of(context).pushReplacement(
                                           MaterialPageRoute(
-                                              builder: (context) => Login()));
+                                              builder: (context) => MainScreen()));
                                     else {
                                       dialog(context, response);
                                     }

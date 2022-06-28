@@ -6,10 +6,9 @@ import 'package:testmahmoud/Models/universityModel.dart';
 import 'package:testmahmoud/ViewModel/endpoints.dart';
 import 'package:testmahmoud/ViewModel/signup_cubit/SignUpState.dart';
 import 'package:testmahmoud/Views/Component/catchError.dart';
-import 'package:testmahmoud/database/remote/dioHelper.dart';
-import 'package:testmahmoud/database/remote/dio_exceptions.dart';
 
-import '../../Models/ModelUniversity.dart';
+import '../../view/pages/dioHelper.dart';
+
 
 class SignupCubit extends Cubit<SignupState> {
   SignupCubit() : super(intiStateSignup());
@@ -39,7 +38,7 @@ class SignupCubit extends Cubit<SignupState> {
   GetAllUniversities() async {
     emit(UniversityLoading());
     try {
-      await DioHelper.GetData(url: university).then((value) {
+      await DioHelper.getData(url: university).then((value) {
         emit(UniversitySuccess());
         universityModel = UniversityModel.fromjeson(data: value.data);
         University = universityModel!.universityData[0].id.toString();

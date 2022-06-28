@@ -14,7 +14,7 @@ class BottomNavBarCubit extends Cubit<MainState>{
   BottomNavBarCubit():super(MainInitialState());
 
 static BottomNavBarCubit get(context)=>BlocProvider.of(context);
-  List<Widget> screenList=[HomeScreen(),News(),Setting()];
+  List<Widget> screenList=[HomeScreen(),NewsScreen(),Setting()];
   int index=0;
   change(int i){
     index=i;

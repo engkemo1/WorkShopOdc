@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import 'DioHelper.dart';
 
 class DioExceptions implements Exception {
   String? message;

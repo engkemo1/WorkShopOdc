@@ -39,7 +39,11 @@ dependencies:
   bloc: ^8.0.3
   awesome_dialog: ^2.2.1
   modal_progress_hud_nsn: ^0.2.1
-
+  expandable: ^5.0.1
+  simple_html_css: ^3.0.1+1
+  share_plus: ^4.0.10
+  conditional_builder_null_safety: ^0.0.6
+  shared_preferences:
 dev_dependencies:
   flutter_test:
     sdk: flutter

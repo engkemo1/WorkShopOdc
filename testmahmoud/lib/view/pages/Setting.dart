@@ -1,8 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:testmahmoud/database/local/cache_helper.dart';
+
+import 'Login.dart';
 class Setting extends StatelessWidget {
   var data=[
-    { 'images/faq','FAQ'},
+    { 'images/faq.png','FAQ'},
     {'images/terms.png','Terms'},
     { 'images/privacy.png','Our Partners'},
     { 'images/suport.png','Support'},
@@ -31,7 +34,15 @@ class Setting extends StatelessWidget {
                 mainAxisSpacing: 20),
             itemCount: data.length,
             itemBuilder: (BuildContext ctx, index) {
-              return Card(
+              return GestureDetector(
+                onTap: (){
+                  if(index==4)
+                  CacheHelper.clearData();
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>Login()));
+                },
+                child:
+
+                Card(
 
                 child: Column(mainAxisAlignment:MainAxisAlignment.center,children: [
 
@@ -44,7 +55,7 @@ class Setting extends StatelessWidget {
                   Text(data[index].last)
 
                 ],),
-              );
+              ));
             }),
       ),
     );

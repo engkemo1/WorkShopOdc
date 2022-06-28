@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testmahmoud/Views/Component/constant.dart';
 
 import '../../ViewModel/BottomNavBarCubit/BottomNavBarCubit.dart';
 import '../../ViewModel/BottomNavBarCubit/BottomNavBarState.dart';
@@ -19,11 +20,11 @@ class MainScreen extends StatelessWidget {
           currentIndex: BottomNavBarCubit.get(context).index,
           items: [
             buildBottomNavigationBarItem(
-                Icon(Icons.home_outlined), Text('Home')),
+                Icon(Icons.home_outlined), Text('Home',style: TextStyle(fontSize: 17,color: orange,fontWeight: FontWeight.bold),)),
             buildBottomNavigationBarItem(
-                Icon(Icons.newspaper_outlined), Text('News')),
+                Icon(Icons.newspaper_outlined), Text('News',style: TextStyle(fontSize: 17,color: orange,fontWeight: FontWeight.bold))),
             buildBottomNavigationBarItem(
-                Icon(Icons.settings_outlined), Text('Setting'))
+                Icon(Icons.settings_outlined), Text('Setting',style: TextStyle(fontSize: 17,color: orange,fontWeight: FontWeight.bold)))
           ],
           onTap: (index) {
             BottomNavBarCubit.get(context).change(index);

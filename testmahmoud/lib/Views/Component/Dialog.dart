@@ -10,7 +10,7 @@ dialog(context, message) {
     title: '',
     // padding: const EdgeInsets.all(5.0),
     desc: message,
-
+  btnOkColor: Colors.orange,
     btnOkOnPress: () {},
   ).show();
 }

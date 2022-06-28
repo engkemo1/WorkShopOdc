@@ -1,28 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:testmahmoud/Views/Component/validation.dart';
 
 import '../../Models/Modelsign.dart';
 
 class EditTextForm extends StatelessWidget {
   EditTextForm(
       {Key? key,
+       this.typeKeyboard,
+      this.Check,
       this.text,
       this.ColorOfLabel,
       this.ColorOfline,
       this.isScure,
       this.value})
       : super(key: key);
+  final Check;
   final text;
+  final typeKeyboard;
   final ColorOfLabel;
   final ColorOfline;
   final isScure;
   final value;
+
   @override
   Widget build(BuildContext context) {
     String? name;
     return TextFormField(
-      validator: (val) {
-        if (val == null || val.length == 0) return "required";
-      },
+      keyboardType: typeKeyboard,
+      validator: Check,
       onSaved: (val) {
         sign?[value] = val;
       },

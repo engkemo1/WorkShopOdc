@@ -1,8 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:testmahmoud/database/local/cache_helper.dart';
-
+import 'package:testmahmoud/view/pages/FaqScreen.dart';
+import 'package:testmahmoud/view/pages/Partners.dart';
+import 'package:testmahmoud/view/pages/Support.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'Login.dart';
+import 'Terms.dart';
 class Setting extends StatelessWidget {
   var data=[
     { 'images/faq.png','FAQ'},
@@ -36,9 +40,44 @@ class Setting extends StatelessWidget {
             itemBuilder: (BuildContext ctx, index) {
               return GestureDetector(
                 onTap: (){
-                  if(index==4)
-                  CacheHelper.clearData();
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>Login()));
+
+                   if(index==0){
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => FAQScreen()));
+                  } else if(index==1){
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => About()));
+                  }else if(index==2){
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => Partners()));
+                  }else if(index==3){
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => Support()));
+                  }else if(index==4){
+                     AwesomeDialog(
+                       context: context,
+                       dialogType: DialogType.NO_HEADER,
+                       animType: AnimType.BOTTOMSLIDE,
+
+                       title: '',
+
+                       desc: "Do you want to logout ?",
+                       btnOkColor: Colors.green,
+                       btnOkOnPress: () {
+                         CacheHelper.clearData();
+                         Navigator.pushReplacement(
+                             context, MaterialPageRoute(builder: (_) => Login()));
+                       },
+                      btnCancelOnPress:(){},
+                      btnCancelColor: Colors.red
+                     ).show();
+
+                  }else{
+                     return null;
+                   }
+
+
+
                 },
                 child:
 

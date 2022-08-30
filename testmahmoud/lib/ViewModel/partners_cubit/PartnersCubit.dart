@@ -16,7 +16,7 @@ class PartnersCubit extends Cubit<PartnersStates> {
 
  PartnersModel? partnersModel;
 
-  Future<dynamic> getNews() async {
+  Future<dynamic> getPartners() async {
     emit(GetPartnersDetailsLoading());
     partnersModel = null;
     try {

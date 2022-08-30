@@ -4,6 +4,7 @@ import 'package:testmahmoud/ViewModel/Terms_Cubit/TermsCubit.dart';
 import 'package:testmahmoud/ViewModel/Terms_Cubit/TermsState.dart';
 import 'package:simple_html_css/simple_html_css.dart';
 
+import '../../Views/Component/constant.dart';
 import '../../Views/Component/edittext.dart';
 
 class About extends StatelessWidget {
@@ -25,20 +26,23 @@ class About extends StatelessWidget {
             return Scaffold(
               backgroundColor: Colors.grey[100],
               appBar: AppBar(
-                backgroundColor: Colors.transparent,
+
+                backgroundColor: Colors.white,
                 centerTitle: true,
-                elevation: 4,
+                elevation: 0,
                 leading: IconButton(
-                  onPressed: () {},
+                  onPressed: () {Navigator.pop(context);},
                   icon: Icon(
                     Icons.arrow_back_ios,
                     size: 28,
+                    color: orange,
                   ),
                 ),
                 title: EditText(
                     text: "Terms",
-                    color: Colors.white,
-                    fontsize: 30.0,
+                    color: Colors.black,
+
+                    fontsize: 23.0,
                     fontwight: FontWeight.bold),
               ),
               body: SingleChildScrollView(

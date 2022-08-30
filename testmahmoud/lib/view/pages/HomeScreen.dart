@@ -1,4 +1,7 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+
+import 'dart:io';
 
 class HomeScreen extends StatelessWidget {
   var data = [
@@ -12,7 +15,22 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+        body: WillPopScope(
+      onWillPop: () async{   return await AwesomeDialog(
+          context: context,
+          dialogType: DialogType.NO_HEADER,
+          animType: AnimType.BOTTOMSLIDE,
+
+          title: '',
+
+          desc: "Do you want to Exit ?",
+          btnOkColor: Colors.green,
+          btnOkOnPress: () {
+            exit(0) ;         },
+          btnCancelOnPress:(){Navigator.of(context).canPop();},
+          btnCancelColor: Colors.red
+      ).show();},
+      child: SafeArea(
         child: Column(
           children: [
             SizedBox(
@@ -75,6 +93,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }

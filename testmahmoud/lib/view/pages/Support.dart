@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:testmahmoud/Views/Component/Editbutton.dart';
 import 'package:testmahmoud/Views/Component/RaduisTextForm.dart';
 
+import '../../Views/Component/constant.dart';
 import '../../Views/Component/edittext.dart';
 import '../../Views/Component/validation.dart';
 
@@ -14,20 +15,21 @@ class Support extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         centerTitle: true,
-        elevation: 4,
+        elevation: 0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {Navigator.pop(context);},
           icon: Icon(
             Icons.arrow_back_ios,
+            color: orange,
             size: 28,
           ),
         ),
         title: EditText(
-            text: "SUPPORT",
-            color: Colors.white,
-            fontsize: 30.0,
+            text: "Support",
+            color: Colors.black,
+            fontsize: 23.0,
             fontwight: FontWeight.bold),
       ),
       backgroundColor: Colors.white,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:testmahmoud/ViewModel/faq_cuibt/faq_cuibt.dart';
 import 'package:testmahmoud/database/local/cache_helper.dart';
+import 'package:testmahmoud/view/pages/FaqScreen.dart';
 import 'package:testmahmoud/view/pages/MainScreen.dart';
 import 'package:testmahmoud/view/pages/dioHelper.dart';
 
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
 
     ], child:
     MaterialApp(
+      routes:{
+        'FAQ':(context) => FAQScreen(),
+      },
       home: (token is String && token.length >0 )?MainScreen():Login(),
       debugShowCheckedModeBanner: false,
     ) );
